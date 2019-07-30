@@ -26,7 +26,7 @@ def instance_norm(x, scope='instance_norm'):
 
 
 def conv2d(input_, output_dim, d_h=2, d_w=2, scope='conv_0',
-           conv_filters_dim=4, padding='same', use_bias=True, pad=0):
+           conv_filters_dim=4, padding='zero', use_bias=True, pad=0):
 
     """ Wrapper of convolutional operation.
 
@@ -52,16 +52,28 @@ def conv2d(input_, output_dim, d_h=2, d_w=2, scope='conv_0',
     b_initializer = tf.constant_initializer(0)
     k_h = k_w = conv_filters_dim
 
-    conv = tf.layers.conv2d(
-        input_,
-        output_dim,
-        kernel_size=[k_h, k_w],
-        strides=(d_h, d_w),
-        kernel_initializer=k_initializer,
-        bias_initializer=b_initializer,
-        use_bias=use_bias,
-        padding=padding,
-        name=scope)
+    with tf.variable_scope(scope):
+
+        if padding == 'zero':
+            x = tf.pad(
+                input_,
+                [[0, 0], [pad, pad], [pad, pad], [0, 0]])
+        elif padding == 'reflect':
+            x = tf.pad(
+                input_,
+                [[0, 0], [pad, pad], [pad, pad], [0, 0]],
+                mode='REFLECT')
+        else:
+            x = input_
+
+        conv = tf.layers.conv2d(
+            x,
+            output_dim,
+            kernel_size=[k_h, k_w],
+            strides=(d_h, d_w),
+            kernel_initializer=k_initializer,
+            bias_initializer=b_initializer,
+            use_bias=use_bias)
 
     return conv
 
