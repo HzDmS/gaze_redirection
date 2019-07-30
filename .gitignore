@@ -1,0 +1,12 @@
+lsf.*
+*.pyc
+.idea/
+test.ipynb
+.ipynb_checkpoints/*
+models/
+*.log
+.DS_Store
+gaze_playground.ipynb
+venv/
+dataset/
+*/.ropeproject/
