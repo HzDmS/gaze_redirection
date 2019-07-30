@@ -61,4 +61,4 @@ python main.py --mode train --data_path ./dataset/ --log_dir ./log/ --batch_size
 python main.py --mode eval --data_path ./dataset/ --log_dir ./log/ --batch_size 21
 ```
 
-Then, a folder named **eval** will be generated in folder **./log/**. Generated images, input images and target images will be stored in **quanti_eval/**.
+Then, a folder named **eval** will be generated in folder **./log/**. Generated images, input images and target images will be stored in **eval/**.
