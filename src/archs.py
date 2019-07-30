@@ -48,7 +48,7 @@ def discriminator(params, x_init, reuse=False):
                        pad=1, scope='conv_logit_gan', use_bias=False)
 
         x_reg = conv2d(x, 2, conv_filters_dim=filter_size, d_h=1, d_w=1,
-                       scope='conv_logit_reg', use_bias=False, padding="valid")
+                       pad=0, scope='conv_logit_reg', use_bias=False)
         x_reg = tf.reshape(x_reg, [-1, 2])
 
         return x_gan, x_reg

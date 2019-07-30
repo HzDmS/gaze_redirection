@@ -38,7 +38,7 @@ def conv2d(input_, output_dim, d_h=2, d_w=2, scope='conv_0',
     d_w: int, width of stride.
     scope: str, name of variable scope.
     conv_filters_dim: int, size of kernel, width = height.
-    padding: str, strategy of padding, one of "valid" and "same".
+    padding: str, strategy of padding, one of "zero" and "reflect".
     use_bias: bool, whether to use bias in this layer.
     pad: int, size of padding.
 
