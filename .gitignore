@@ -10,3 +10,4 @@ gaze_playground.ipynb
 venv/
 dataset/
 */.ropeproject/
+.vscode/
