@@ -3,8 +3,6 @@
 import os
 import tensorflow as tf
 
-from tensorflow.contrib.data import shuffle_and_repeat, map_and_batch
-
 
 class ImageData(object):
 
@@ -13,7 +11,7 @@ class ImageData(object):
     def __init__(self, load_size, channels, data_path, ids):
 
         """ Init.
-        
+
         Parameters
         ----------
         load_size: int, input image size.
@@ -32,9 +30,14 @@ class ImageData(object):
                       if f.endswith('.jpg')]
         self.file_dict = dict()
         for f_name in file_names:
-            key = f_name.split('.')[0].split('_')[0]
-            side = f_name.split('.')[0].split('_')[-1]
-            key = key + '_' + side
+            # key = f_name.split('.')[0].split('_')[0]
+            # side = f_name.split('.')[0].split('_')[-1]
+            # key = key + '_' + side
+            fields = f_name.split('.')[0].split('_')
+            identity = fields[0]
+            head_pose = fields[2]
+            side = fields[-1]
+            key = '_'.join([identity, head_pose, side])
             if key not in self.file_dict.keys():
                 self.file_dict[key] = []
                 self.file_dict[key].append(f_name)
@@ -62,7 +65,7 @@ class ImageData(object):
         angles_g
     ):
         """ Process input images.
-        
+
         Parameters
         ----------
         filename: str, path of input image.
@@ -84,7 +87,7 @@ class ImageData(object):
         def _to_image(file_name):
 
             """ Load image, normalize it and convert it into tf.tensor.
-            
+
             Parameters
             ----------
             file_name: str, image path.
@@ -92,7 +95,7 @@ class ImageData(object):
             Returns
             -------
             img: tf.tensor, tf.float32. Image tensor.
-            
+
             """
 
             x = tf.read_file(file_name)
@@ -110,6 +113,9 @@ class ImageData(object):
     def preprocess(self):
 
         for key in self.file_dict.keys():
+
+            if len(self.file_dict[key]) == 1:
+                continue
 
             idx = int(key.split('_')[0])
             flip = 1
