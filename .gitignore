@@ -9,5 +9,6 @@ models/
 gaze_playground.ipynb
 venv/
 dataset/
+dataset.tar
 */.ropeproject/
 .vscode/

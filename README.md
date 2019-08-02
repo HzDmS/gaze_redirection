@@ -36,7 +36,7 @@ The code here is the development version. It can be used for training, but there
 
 ## Dataset
 
-The dataset contains eye patch images parsed from [Columbia Gaze Dataset](http://www.cs.columbia.edu/~brian/projects/columbia_gaze.html).
+The dataset contains eye patch images parsed from [Columbia Gaze Dataset](http://www.cs.columbia.edu/~brian/projects/columbia_gaze.html). It can be downloaded via this [link](https://drive.google.com/file/d/1b_ENvvaYOr_urOevvVSHybQBpJLAoVI0/view?usp=sharing).
 
 ```Bash
 tar -xvf dataset.tar
