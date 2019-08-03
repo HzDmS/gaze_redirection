@@ -42,7 +42,7 @@ The dataset contains eye patch images parsed from [Columbia Gaze Dataset](http:/
 tar -xvf dataset.tar
 ```
 
-The dataset contains six subfolders, N30P/, N15P/, 0P, P15P, P30P/ and all/. prefix 'N' means negative head-pose, and 'P' means positive head-pose. Folder all/ contains all eye patch images.
+The dataset contains six subfolders, N30P/, N15P/, 0P/, P15P/, P30P/ and all/. Prefix 'N' means negative head pose, and 'P' means positive head pose. Folder all/ contains all eye patch images with different head poses.
 
 ## VGG-16 pretrained weights
 
