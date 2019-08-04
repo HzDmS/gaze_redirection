@@ -1,9 +1,8 @@
-"""training/testing model"""
+# Model for Training & testing
 
 from __future__ import division
 
 import os
-import glob
 import logging
 import numpy as np
 import tensorflow as tf
@@ -133,7 +132,7 @@ class Model(object):
 
     def adv_loss(self):
         """Build sub graph for discriminator and gaze estimator
-        
+
         Returns
         -------
         d_loss: scalar, adversarial loss for training discriminator.
@@ -157,7 +156,8 @@ class Model(object):
         slopes = tf.sqrt(tf.reduce_sum(tf.square(grad), axis=[1, 2, 3]))
         gp = tf.reduce_mean(tf.square(slopes - 1.))
 
-        d_loss = -tf.reduce_mean(gan_real) + tf.reduce_mean(gan_fake) + 10. * gp
+        d_loss = (-tf.reduce_mean(gan_real) +
+                  tf.reduce_mean(gan_fake) + 10. * gp)
         g_loss = -tf.reduce_mean(gan_fake)
 
         reg_loss_d = tf.losses.mean_squared_error(self.angles_r, reg_real)
@@ -168,7 +168,7 @@ class Model(object):
     def feat_loss(self):
         """
         build the sub graph of perceptual matching network
-        
+
         Returns
         -------
         c_loss: scalar, content loss
@@ -189,7 +189,7 @@ class Model(object):
 
     def optimizer(self, lr):
         """Return an optimizer
-        
+
         Parameters
         ----------
         lr: learning rate.
@@ -371,7 +371,8 @@ class Model(object):
                 try:
                     i = 0
                     while True:
-                        real_imgs, target_imgs, fake_imgs, a_r, a_t = test_sess.run(
+                        (real_imgs, target_imgs, fake_imgs,
+                         a_r, a_t) = test_sess.run(
                             [self.x_test_r, self.x_test_t, x_fake,
                              self.angles_test_r, self.angles_test_g])
                         a_t = a_t * np.array([15, 10])
@@ -380,14 +381,20 @@ class Model(object):
 
                         for j in range(hps.batch_size):
                             imsave(os.path.join(
-                                tar_dir, '%d_%d_%.3f_H%d_V%d.jpg' % (i, j, delta[j], a_t[j][0], a_t[j][1])),
-                                   target_imgs[j])
+                                tar_dir,
+                                '%d_%d_%.3f_H%d_V%d.jpg' % (
+                                    i, j, delta[j], a_t[j][0],
+                                    a_t[j][1])), target_imgs[j])
                             imsave(os.path.join(
-                                gene_dir, '%d_%d_%.3f_H%d_V%d.jpg' % (i, j, delta[j], a_t[j][0], a_t[j][1])),
-                                   fake_imgs[j])
+                                gene_dir,
+                                '%d_%d_%.3f_H%d_V%d.jpg' % (
+                                    i, j, delta[j], a_t[j][0],
+                                    a_t[j][1])), fake_imgs[j])
                             imsave(os.path.join(
-                                real_dir, '%d_%d_%.3f_H%d_V%d.jpg' % (i, j, delta[j], a_t[j][0], a_t[j][1])),
-                                   real_imgs[j])
+                                real_dir,
+                                '%d_%d_%.3f_H%d_V%d.jpg' % (
+                                    i, j, delta[j], a_t[j][0],
+                                    a_t[j][1])), real_imgs[j])
 
                         i = i + 1
                 except tf.errors.OutOfRangeError:

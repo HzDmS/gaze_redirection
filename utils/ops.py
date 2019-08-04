@@ -1,5 +1,6 @@
-""" This script contains all neural network layers and functions that are used in the project.
-"""
+# This script contains all neural network layers and functions that are used
+# the project.
+
 from __future__ import division
 
 import tensorflow as tf
@@ -7,10 +8,11 @@ import numpy as np
 
 weight_init = tf.contrib.layers.xavier_initializer()
 
+
 def instance_norm(x, scope='instance_norm'):
 
     """ Wrapper of instance normalization.
-    
+
     Parameters
     ----------
     input: tensor.
@@ -118,45 +120,45 @@ def deconv2d(input_, output_dim, d_h=2, d_w=2, scope='deconv_0',
 
 def relu(input_):
     """ Wrapper of ReLU function.
-    
+
     Parameters
     ----------
     input_: tensor.
-    
+
     Returns
     -------
     tensor.
-    
+
     """
     return tf.nn.relu(input_)
 
 
 def lrelu(input_):
     """ Wrapper of LeakyReLU function.
-    
+
     Parameters
     ----------
     input_: tensor.
-    
+
     Returns
     -------
     tensor.
-    
+
     """
     return tf.nn.leaky_relu(input_, alpha=0.01)
 
 
 def tanh(input_):
     """ Wrapper of tanh function.
-    
+
     Parameters
     ----------
     input_: tensor.
-    
+
     Returns
     -------
     tensor.
-    
+
     """
     return tf.tanh(input_)
 
@@ -164,16 +166,16 @@ def tanh(input_):
 def l1_loss(x, y):
 
     """ L1 loss.
-    
+
     Parameters
     ----------
     x: tensor.
     y: tensor, which should have the same shape as x.
-    
+
     Returns
     -------
     loss: scalar, l1 loss.
-    
+
     """
 
     loss = tf.reduce_mean(tf.abs(x - y))
@@ -184,16 +186,16 @@ def l1_loss(x, y):
 def l2_loss(x, y):
 
     """ L2 loss.
-    
+
     Parameters
     ----------
     x: tensor
     y: tensor, which should have the same shape as x.
-    
+
     Returns
     -------
     loss: scalar, l2 loss.
-    
+
     """
 
     loss = tf.reduce_mean(tf.reduce_sum(tf.square(x - y), axis=[1, 2, 3]))
@@ -214,7 +216,7 @@ def content_loss(endpoints_mixed, content_layers):
     Returns
     -------
     loss: scalar, content loss.
-    
+
     """
 
     loss = 0
@@ -239,7 +241,7 @@ def style_loss(endpoints_mixed, style_layers):
     Returns
     -------
     loss: scalar, style loss.
-    
+
     """
 
     loss = 0
@@ -264,7 +266,7 @@ def gram(layer):
     Returns
     -------
     grams: gram matrices.
-    
+
     """
 
     shape = tf.shape(layer)
@@ -282,7 +284,7 @@ def gram(layer):
 def angular2cart(angular):
 
     """ Angular coordinates to cartesian coordinates.
-    
+
     Parameters
     ----------
     angular: list, [yaw, pitch]
@@ -305,16 +307,16 @@ def angular2cart(angular):
 def angular_error(x, y):
 
     """Compute the angular error.
-    
+
     Parameters
     ----------
     x: list, [yaw, pitch].
     y: list, [yaw, pitch].
-    
+
     Returns
     -------
     int, error.
-    
+
     """
 
     x = angular2cart(x)

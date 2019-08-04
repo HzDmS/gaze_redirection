@@ -1,7 +1,7 @@
-""" Network architectures. """
+# Network architectures.
 
 from __future__ import division
-from utils.ops import *
+from utils.ops import relu, conv2d, lrelu, instance_norm, deconv2d, tanh
 
 import tensorflow as tf
 import tensorflow.contrib.slim as slim
@@ -10,7 +10,7 @@ import tensorflow.contrib.slim as slim
 def discriminator(params, x_init, reuse=False):
 
     """ Discriminator.
-    
+
     Parameters
     ----------
     params: dict.
@@ -21,7 +21,7 @@ def discriminator(params, x_init, reuse=False):
     -------
     x_gan: tensor, outputs for adversarial training.
     x_reg: tensor, outputs for gaze estimation.
- 
+
     """
 
     layers = 5
@@ -32,7 +32,7 @@ def discriminator(params, x_init, reuse=False):
 
         # 64 3 -> 32 64 -> 16 128 -> 8 256 -> 4 512 -> 2 1024
 
-        x = conv2d(x_init,channel, conv_filters_dim=4, d_h=2, d_w=2,
+        x = conv2d(x_init, channel, conv_filters_dim=4, d_h=2, d_w=2,
                    scope='conv_0', pad=1, use_bias=True)
         x = lrelu(x)
 
@@ -57,17 +57,17 @@ def discriminator(params, x_init, reuse=False):
 def generator(input_, angles, reuse=False):
 
     """ Generator.
-    
+
     Parameters
     ----------
     input_: tensor, input images.
     angles: tensor, target gaze direction.
     reuse: bool, reuse the net if True.
-    
+
     Returns
     -------
     x: tensor, generated image.
-    
+
     """
 
     channel = 64
@@ -127,18 +127,18 @@ def generator(input_, angles, reuse=False):
 def vgg_16(inputs, scope='vgg_16', reuse=False):
 
     """ VGG-16.
-    
+
     Parameters
     ----------
     inputs: tensor.
     scope: name of scope.
     reuse: reuse the net if True.
-    
+
     Returns
     -------
     net: tensor, output tensor.
     end_points: dict, collection of layers.
-    
+
     """
 
     with tf.variable_scope(scope, 'vgg_16', [inputs], reuse=reuse) as sc:

@@ -1,10 +1,7 @@
-""" Main script. """
+# Main script.
 
 import argparse
 import os
-import logging.config
-import shutil
-import yaml
 
 from src.model import Model
 

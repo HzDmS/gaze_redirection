@@ -1,4 +1,4 @@
-""" Dataloader. """
+# Dataloader.
 
 import os
 import tensorflow as tf
