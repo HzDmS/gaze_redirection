@@ -326,6 +326,6 @@ def angular_error(x, y):
     sim = np.divide(np.sum(np.multiply(x, y), axis=1),
                     np.multiply(x_norm, y_norm))
 
-    # sim = np.clip(sim, -1.0 + 1e-6, 1.0 - 1e-6)
+    sim = np.clip(sim, -1.0, 1.0)
 
     return np.arccos(sim) * 180.0 / np.pi
