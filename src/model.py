@@ -379,7 +379,7 @@ class Model(object):
                         a_r = a_r * np.array([15, 10])
                         delta = angular_error(a_t, a_r)
 
-                        for j in range(hps.batch_size):
+                        for j in range(real_imgs.shape[0]):
                             imsave(os.path.join(
                                 tar_dir,
                                 '%d_%d_%.3f_H%d_V%d.jpg' % (
