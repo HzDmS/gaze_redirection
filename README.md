@@ -1,4 +1,4 @@
-# Photo-realistic Monocular Gaze Redirection using Generative Adversarial Networks
+# Photo-Realistic Monocular Gaze Redirection Using Generative Adversarial Networks
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
