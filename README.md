@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[[Paper](https://arxiv.org/abs/1903.12530)] [[Video](https://youtu.be/SJBb9t6KmDY)]
+[[Paper](https://arxiv.org/abs/1903.12530)] [[Video](https://www.youtube.com/watch?v=oHx88bHaM18)]
 
 Authors: **Zhe He**, Adrian Spurr, Xucong Zhang, Otmar Hilliges
 
